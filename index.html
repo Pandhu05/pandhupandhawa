@@ -1,37 +1,225 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>Profil Saya</title>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Link Saya</title>
   <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      background: #f0f0f0;
-      margin: 0;
-      padding: 50px;
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    color: white;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    margin: 10px 0 5px;
+    font-size: 24px;
+    text-shadow: 0 0 5px rgba(0,0,0,0.6);
+  }
+
+  p {
+    margin: 0 0 30px;
+    font-size: 14px;
+    text-shadow: 0 0 4px rgba(0,0,0,0.5);
+  }
+
+  .link-button {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 14px;
+    margin: 10px 0;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+
+  .link-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  footer {
+    margin-top: 40px;
+    font-size: 12px;
+    color: #ccc;
+    text-shadow: 0 0 2px black;
+  }
+
+  /* 🌠 Bintang Jatuh */
+  .shooting-star {
+    position: fixed;
+    width: 2px;
+    height: 80px;
+    background: white;
+    opacity: 0.7;
+    top: -100px;
+    left: 0;
+    transform: rotate(45deg);
+    animation: fall 1.5s linear forwards;
+    z-index: 0;
+  }
+
+  @keyframes fall {
+    0% {
+      transform: translate(0, 0) rotate(45deg);
+      opacity: 1;
     }
-    .card {
-      background: white;
-      padding: 30px;
-      max-width: 600px;
-      margin: auto;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    100% {
+      transform: translate(600px, 600px) rotate(45deg);
+      opacity: 0;
     }
+  }
+
+  /* ✨ Bintang Berkedip */
+  .twinkling-stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    background: transparent;
+  }
+
+  .twinkling-stars::before {
+    content: '';
+    position: absolute;
+    width: 2000px;
+    height: 2000px;
+    background: transparent url("https://i.ibb.co/jhNs5n2/twinkling.png") repeat;
+    animation: moveStars 200s linear infinite;
+    opacity: 0.4;
+  }
+
+  @keyframes moveStars {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-1000px, 1000px); }
+  }
+
+  /* 🎶 Tombol Mute/Unmute */
+  #mute-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.6);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    z-index: 1000;
+  }
+
+  #click-notice {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: rgba(0,0,0,0.7);
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 12px;
+    color: white;
+    display: none;
+    z-index: 999;
+    animation: fadeInOut 3s ease forwards;
+  }
+
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-10px); }
+    10% { opacity: 1; transform: translateY(0); }
+    90% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-10px); }
+  }
   </style>
 </head>
+
 <body>
-  <div class="card">
-    <h1>Halo, Saya [Pandhu] </h1>
-    <p>Saya seorang [Manusia Biasa].</p>
-    <p>Berikut beberapa hal tentang saya:</p>
-    <ul>
-      <li>Suka membuat game</li>
-      <li>Mahir dalam desain karakter</li>
-      <li>Belajar pengembangan web</li>
-    </ul>
-    <p>Hubungi saya di: <a href="mailto:email@example.com">email@example.com</a></p>
-  </div>
+  <!-- 🌟 Bintang Berkedip -->
+  <div class="twinkling-stars"></div>
+
+  <!-- 🔊 Tombol Musik -->
+  <button id="mute-btn">🔊</button>
+  <div id="click-notice">Klik di mana saja untuk memulai musik 🎶</div>
+
+  <!-- 👤 Profil -->
+  <img class="profile-img" src="https://i.imgur.com/wD7OcVF.jpg" alt="Foto Profil">
+  <h1>Rahmanhidayatur</h1>
+  <p>Apalah Apalah Apalah Apalah</p>
+
+  <!-- 🔗 Link -->
+  <a class="link-button" href="https://www.instagram.com/_pnndhu/" target="_blank">Instagram</a>
+  <a class="link-button" href="https://wa.me/6283114197803" target="_blank">WhatsApp</a>
+  <a class="link-button" href="https://www.youtube.com/@ziaoftpan9963" target="_blank">YouTube</a>
+  <a class="link-button" href="mailto:pandhurahman430@gmail.com" target="_blank">Email</a>
+
+  <footer>&copy; 2025 pandhu</footer>
+
+  <!-- 🎵 Musik -->
+  <audio id="bg-music" src="https://cdn.pixabay.com/download/audio/2023/06/26/audio_f7f39e3813.mp3?filename=space-ambient-145038.mp3" loop></audio>
+
+  <script>
+    const audio = document.getElementById('bg-music');
+    const muteBtn = document.getElementById('mute-btn');
+    const clickNotice = document.getElementById('click-notice');
+
+    // Tampilkan notifikasi klik
+    window.addEventListener('load', () => {
+      clickNotice.style.display = 'block';
+    });
+
+    // Play musik saat klik pertama
+    const startAudio = () => {
+      audio.play().then(() => {
+        clickNotice.style.display = 'none';
+      }).catch((e) => {
+        console.log('Autoplay error:', e);
+      });
+    };
+
+    document.body.addEventListener('click', startAudio, { once: true });
+
+    // Mute/Unmute
+    muteBtn.addEventListener('click', () => {
+      audio.muted = !audio.muted;
+      muteBtn.textContent = audio.muted ? '🔇' : '🔊';
+    });
+
+    // Bintang jatuh setiap beberapa detik
+    setInterval(() => {
+      const star = document.createElement('div');
+      star.className = 'shooting-star';
+      star.style.left = Math.random() * window.innerWidth + 'px';
+      document.body.appendChild(star);
+      setTimeout(() => star.remove(), 1500);
+    }, 3000);
+  </script>
 </body>
 </html>
